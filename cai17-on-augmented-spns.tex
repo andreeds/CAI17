@@ -1,0 +1,81 @@
+\documentclass[runningheads,a4paper]{llncs}
+
+% Packages
+\usepackage{amssymb}
+\setcounter{tocdepth}{3}
+% Our packages
+\usepackage{graphicx} % Deal with images
+\usepackage[utf8]{inputenc} % Provide special ponctuations
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\renewcommand{\thesubfigure}{\roman{subfigure}}
+\usepackage{paralist}
+\usepackage{url}
+\usepackage{amsmath}
+
+%% Emails
+%\urldef{\mailsa}\path|{butz,dossantos,oliveira}@cs.uregina.ca|
+\urldef{\mailsa}\path|{author1,author2,author2}@institute1|
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+\noindent\keywordname\enspace\ignorespaces#1}
+
+\begin{document}
+
+% Title
+\mainmatter
+\title{On Theoretical Properties of \\ Augmented Sum Product Networks}
+\titlerunning{On Theoretical Properties of \\ Augmented Sum Product Networks}
+
+%% Authors
+%\author{
+%Andr\'e E. dos Santos\inst{1} 
+%\and
+%Cory J. Butz\inst{1} 
+%\and 
+%Jhonatan S. Oliveira\inst{1} 
+%}
+% Authors
+\author{
+Author 1\inst{1} 
+\and
+Author 2\inst{1} 
+\and 
+Author 3\inst{1} 
+}
+\authorrunning{On Theoretical Properties of Augmented Sum Product Networks}
+
+% Institution
+%\institute{
+%Department of Computer Science, University of Regina, Canada\\
+%\mailsa\\
+%}
+\institute{
+Department 1, Institute 1, Country 1\\
+\mailsa\\
+}
+
+% Print title
+\toctitle{A Simple Method for Testing Independencies in Bayesian Networks}
+\tocauthor{A Simple Method for Testing Independencies in Bayesian Networks}
+\maketitle
+
+
+% Abstract
+\begin{abstract}
+Abstract
+\keywords{sum product networks, conditional independence, deep learning}
+\end{abstract}
+
+% Sections
+\input{sections/introduction}
+\input{sections/background} 
+%\input{sections/simplifying_msep}
+%\input{sections/equivalence}
+%\input{sections/advantages}
+%\input{sections/conclusion}
+
+% References
+\bibliographystyle{splncs03}
+\bibliography{references/references}
+
+\end{document}
