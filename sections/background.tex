@@ -34,32 +34,44 @@ The value of a sum node is $\sum_{v_j \in Ch{v_i}}{w_{ij}val(v_j)}$.
 %graph together with non-negative weights $w_{ij}$ for each edge $(w_i,w_j)$. 
 
 % random variable $X$ with finitely states 
-Figure \ref{} shows an SPN over random variables variables $TODO$.
+Figure \ref{fig:spn} shows an SPN over random variables variables ${\bf X}=\{X_1,X_2,X_3\}$.
 Say that for simplicity, as for Poupart, we are using Boolean variables. 
 Show reference for non discrete variables generalization.
+
+
+\begin{figure}[h]
+    \begin{center}
+		\includegraphics[width=0.5\textwidth]{figures/SPN.png}
+		\caption{Example SPN from over ${\bf X}=\{X_1,X_2,X_3\}$ adapted from \cite{Peharz:2016wl}.}
+		\label{subfig:dag}
+    \label{fig:spn}
+    \end{center}
+\end{figure}
 
 \begin{example}
 Show example with $P(E=e)$ and indicator variables.	
 \end{example}
 
+The \emph{scope} of a node $v$ in an SPN $S$ is defined as
+\begin{align*}
+scope(v) = \begin{cases}
+				X & \text{if $v$ is an indicator variable over $X$}\\
+				\bigcup_{v^\prime \in Ch(v)}{scope(v^\prime)} &\text{otherwise.}\\
+			\end{cases}
+\end{align*}
 
-Definition scope.
+\begin{example}
+	Example scope of 2 nodes. one leaf and one internal node
+\end{example}
 
-Example
+Comment about scope.
+
+
 
 Completeness. consistency. Decomposable
 
+
 There are two method to convert a SPN to a Bayesian Network (BN)\cite{pear88}.
-
-
-%network polynomial
-\subsection{Bayesian Networks}
-
-Definition
-
-Example
-
-Figure
 
 Comment about inference. NP hard.
 
@@ -68,6 +80,8 @@ Comment about inference. NP hard.
 SPN $\rightarrow$ Normalized SPN $\rightarrow$ Poupart BN
 
 Definition
+
+Scope of distrbution noded in norm SPN
 
 Algorithm
 
