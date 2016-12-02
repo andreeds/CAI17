@@ -1,6 +1,56 @@
 \section{Background}
 
-%\subsection{Required Notation}
+\subsection{Required Notation}
+
+We first define some pertinent notation used in this paper.
+A random variables is denoted by upper-case letter $X$.
+The values of $X$ are denoted by $val(x)$, where lower-case element $x$ is a corresponding element of $val(X)$.
+Sets of random variables are defined by boldface letter ${\bf X}$.
+For ${\bf X} = \{X_1,\dots,X_N\}$, we define ${\bf val(X)} = \times^{N}_{n=1}{{\bf val}(X_n)}$ and use corresponding lower-case boldface  letters for elements of ${\bf val(X)}$.
+For a subset ${\bf Y \subseteq X}$, ${\bf x[Y]}$ is a projection of ${\bf x}$ onto ${\bf Y}$.
+
+Let ${\cal G}$ denote a \emph{directed acyclic graph} (DAG) on a finite set of variables (nodes).
+%A \emph{directed path} from $v_1$ to $v_k$ is a sequence $v_1, v_2, \ldots , v_k$ with directed edges $(v_i, v_{i+1})$ in ${\cal B}$, $i = 1, 2,\ldots, k-1$.
+%For each $v_i \in U$, the \emph{ancestors} of $v_i$, denoted $An(v_i)$, are those variables having a directed path to $v_i$.
+%For a set $X \subseteq U$, we define $An(X)$ in the obvious way.
+The \emph{children} $Ch(v_i)$ and \emph{parents} $Pa(v_i)$ of $v_i$ are those $v_j$ such that $(v_i,v_j) \in {\cal G}$ and $(v_j,v_i) \in {\cal G}$, respectively.
+%A singleton set $\{v\}$ may be written as $v$ and $\{ v_1, v_2, \ldots, v_n \}$ as $v_1 v_2 \cdots v_n$.
+The cardinality of a set $W$ is denoted $|W|$.
+
+
+\subsection{Sum-Product Networks}
+
+A \emph{Sum-Product network} (SPN) $\cal S$ over Boolean variables ${\bf X} = \{X_1,\dots,X_N\}$ is a rooted DAG which contains three types of nodes: indicators, sums and products.
+All leaves of $\cal S$ are indicator variables $\lambda_{x_1},\ldots,\lambda_{x_N}$ and $\lambda_{\bar{x}_1},\ldots,\lambda_{\bar{x}_N}$.
+All internal nodes are either sum or product.
+An indicator variable $\lambda[X=x]$ returns 1 when $X=x$ and 0 otherwise.
+Each edge $(v_i,v_j)$ from a sum node $v_i$ has a non-negative weight $w_{ij}$.
+The value of a product node is the product of its children.
+The value of a sum node is $\sum_{v_j \in Ch{v_i}}{w_{ij}val(v_j)}$.
+
+%
+%For $x \in {\bf val(X)}$, we define indicator variables $\lambda_{X=x}(x) := 1(x =x^\prime)$ as input distribution.
+%
+%graph together with non-negative weights $w_{ij}$ for each edge $(w_i,w_j)$. 
+
+% random variable $X$ with finitely states 
+Figure \ref{} shows an SPN over random variables variables $TODO$.
+Say that for simplicity, as for Poupart, we are using Boolean variables. 
+Show reference for non discrete variables generalization.
+
+\begin{example}
+Show example with $P(E=e)$ and indicator variables.	
+\end{example}
+
+
+Definition scope.
+
+Example
+
+Completeness. consistency. Decomposable
+
+There are two method to convert a SPN to a Bayesian Network (BN)\cite{pear88}.
+
 
 %network polynomial
 \subsection{Bayesian Networks}
@@ -12,17 +62,6 @@ Example
 Figure
 
 Comment about inference. NP hard.
-
-\subsection{Sum-Product Networks}
-
-A Sum-Product network (SPN) $\cal S$ over a set of random variables $X$ is a rooted DAG whose leaves are indicators $I$...
-
-Figure
-
-Example
-
-Comment
-
 
 \subsection{Poupart method}
 
