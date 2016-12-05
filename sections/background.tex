@@ -35,13 +35,14 @@ The value of a sum node is $\sum_{v_j \in Ch{v_i}}{w_{ij}val(v_j)}$.
 
 % random variable $X$ with finitely states 
 Figure \ref{fig:spn} shows an SPN over random variables variables ${\bf X}=\{X_1,X_2,X_3\}$.
-Say that for simplicity, as for Poupart, we are using Boolean variables. 
-Show reference for non discrete variables generalization.
+[Say that for simplicity, as for Poupart, we are using Boolean variables.]
+An SPN can be extended for multi-valued discrete variables by replacing Boolean indicators for the variables's possible values.
+For instance, a multinomial distribution over $X_i$ can be represented by $\sum_{j=1}^{m}{p^j_i x^j_i}$, where $p^j_i = P(X_i = x^j_i)$.
 
 
 \begin{figure}[h]
     \begin{center}
-		\includegraphics[width=0.5\textwidth]{figures/SPN.png}
+		\includegraphics[width=0.4\textwidth]{figures/SPN.png}
 		\caption{Example SPN from over ${\bf X}=\{X_1,X_2,X_3\}$ adapted from \cite{Peharz:2016wl}.}
 		\label{subfig:dag}
     \label{fig:spn}
@@ -66,14 +67,41 @@ scope(v) = \begin{cases}
 
 Comment about scope.
 
+%Not constrained SPNs are generally not tractable \cite{peharz2015theoretical}.
+%\cite{poon2011sum} gave two constraints on the the structure of a SPN called completeness and consistency.
+%An SPN is \emph{complete} iff each sum node has children with the same scope.
+%An SPN is \emph{consistent} iff no variable appears negated in one child of a product node an non-negated n another.
+%An SPN 
+
+A SPN is valid if it always correctly compute the probability of evidence.
+A valid SPN computes the probability of evidence in time linear in its size.
+There are two sufficient conditions which make an SPN valid: completeness and consistency \cite{poon2011sum}..
+An SPN is \emph{complete} iff each sum node has children with the same scope.
+An SPN is \emph{consistent} iff no variable appears negated in one child of a product node an non-negated in another.
+Completeness and consistency allow us to design deep architectures where inference is guaranteed to be efficient, in this way improving the task of learning \cite{poon2011sum}. 
+A complete and consistent SPN has the property that every subnetwork of $\cal S$ is valid.
+That is, each node $v$ in $\cal S$ defines a \emph{network polynomial} \cite{poon2011sum} corresponding to the sub-SPN rooted at $v$.
+Then, one can use the \emph{differential approach to inference} \cite{poon2011sum,darwiche2003differential,peharz2015theoretical} to compute the derivatives of the SPN with respect to the indicator variables, yielding the inference scenario ${\cal S}(X=x,{\bf e}\backslash X)$, where ${\bf e}$ is any evidence evaluated in the SPN.
+The salient feature of the differential approach is that this computation can be simultaneously performed for all variables and all values of in the SPN in a single back-propagation pass in the SPN, once the evidence has been evaluated.
 
 
-Completeness. consistency. Decomposable
+\begin{example}
+Example constrains	
+\end{example}
 
+%For more general representations a decomposable SPN is required.
+A SPN is \emph{decomposable} \cite{poon2011sum} iff for every product node $v$, $scope(v_i) \cap scope(v_i) = \emptyset$, where $v_i,v_j \in Ch(v), i\neq j$. 
+Note the that decomposability implies consistency in SPNs.
+That is, decomposability is more restricted than consistency.
+This makes SPNS more general than represantations that require decomposability \cite{poon2011sum}.
 
-There are two method to convert a SPN to a Bayesian Network (BN)\cite{pear88}.
+\subsection{Conversions of SPNs into Bayesian Networks}
 
-Comment about inference. NP hard.
+[Def BNs]
+[Why convert]
+[SPNs are proven to be BNs]
+[Comment about inference. NP hard.]
+There are two method to convert a SPN to a \emph{Bayesian Network} (BN) \cite{pear88}.
 
 \subsection{Poupart method}
 
@@ -81,9 +109,38 @@ SPN $\rightarrow$ Normalized SPN $\rightarrow$ Poupart BN
 
 Definition
 
-Scope of distrbution noded in norm SPN
+Scope of distribution nodes in norm SPN
 
-Algorithm
+\begin{algorithm}[!ht]
+    \caption{\cite{zhao2015relationship} Build BN Structure.}
+    \label{alg:poupart}
+    \begin{algorithmic}[1]
+%        \Procedure{CircuitPropagation}{${\cal AC}$,$\upsilon()$,$d()$}
+        \item[\textbf{Input:} normal SPN $\cal S$]
+%        \Statex{Normal SPN $\cal S$}
+        \item[\textbf{Output:} BN ${\cal B} = ({\cal B}_V, {\cal B}_E)$]
+%		\item[\textbf{Main:}]
+		\State $R \leftarrow$ root of ${\cal S}$
+		\If{$R$ is a terminal node over variable $X$}
+			\State Create an observable variable $X$
+			\State ${\cal B}_V \leftarrow {\cal B}_V \cup X$
+		\Else
+			\For{each child $R_i$ of $R$}
+				\If{BN has not been built for ${\cal S}_{R_i}$}
+					\State Recursively build BN Structure for ${\cal S}_{R_i}$
+				\EndIf
+			\EndFor
+			\If{$R$ is a sum node}
+				\State Create a hidden variable $H_R$ associated with $R$
+				\State ${\cal B}_V \leftarrow {\cal B}_V \cup \{H_R\}$
+				\For{each observable variable $X \in {\cal S}_R$}
+					\State ${\cal B}_E \leftarrow {\cal B}_E \cup \{(H_R,X)\}$
+				\EndFor
+			\EndIf
+		\EndIf		
+%    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 Comment
 
