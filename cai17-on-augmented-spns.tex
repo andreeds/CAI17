@@ -47,7 +47,7 @@ Author 2\inst{1}
 \and 
 Author 3\inst{1} 
 }
-\authorrunning{On Theoretical Properties of Augmented Sum Product Networks}
+\authorrunning{On The Conversion of Augmented Sum Product Networks to Bayesian Networks}
 
 % Institution
 %\institute{
@@ -60,20 +60,26 @@ Department 1, Institute 1, Country 1\\
 }
 
 % Print title
-\toctitle{A Simple Method for Testing Independencies in Bayesian Networks}
-\tocauthor{A Simple Method for Testing Independencies in Bayesian Networks}
+\toctitle{On The Conversion of Augmented Sum Product Networks to Bayesian Networks}
+\tocauthor{On The Conversion of Augmented Sum Product Networks to Bayesian Networks}
 \maketitle
 
 
 % Abstract
 
 \begin{abstract}
-SPNs
-
-Augmented SPNs
-
-New Work
-
+\emph{Sum-Product Network} (SPN) is probabilistic graphical model that also benefits from the properties of deep learning models.
+%In an SPN, leaf nodes are indicators over Boolean variables and the remaining variables are either sum or product nodes.
+The main feature in SPNs is that inference is linear with respect to the size of the network when certain constrains are satisfied.
+There are two methods in the literature to convert an SPN to a \emph{Bayesian Network} (BN).
+The first method applies the conversion of SPNs into BNs using algebraic decision diagrams to represent the local conditional probability distributions.
+The second method is given by the theoretical foundation for latent variable interpretation in augmented SPNs.
+In this paper we propose a method for conversion of augmented SPN to BNs.
+Our method can convert augmented SPNs to BNs preserving the dependencies among random variables and latent variables.
+%The introduced nodes in an augmented SPN is dealt without 
+As results, we establish a common ground between the current methods for converting SPNs to BNs.
+We also propose an method for augmenting an SPN that requires less modifications on the graph.
+Our work continues to give a broader perspective of probabilistic semantics implied by the structure of an SPN through generated the BN.
 \end{abstract}
 
 \keywords{sum product networks, conditional independence, deep learning}
