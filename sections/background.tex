@@ -1,4 +1,5 @@
 \section{Background}
+\label{sec:back}
 
 We begin by presenting some pertinent notation.
 
@@ -51,9 +52,11 @@ For instance, a multinomial distribution over $X_i$ can be represented by $\sum_
     \end{center}
 \end{figure}
 
-\begin{example}
-Show example with $P(E=e)$ and indicator variables.	
-\end{example}
+%\begin{example}
+%Show example with $P(E=e)$ and indicator variables.	
+%\end{example}
+%
+%[comment about SPN]
 
 The \emph{scope} of a node $v$ in an SPN $S$ is defined as
 \begin{align*}
@@ -64,10 +67,13 @@ scope(v) = \begin{cases}
 \end{align*}
 
 \begin{example}
-	Example scope of 2 nodes. one leaf and one internal node
+The scope of leaf node $\lambda_{\bar{x}_1}$ is $scope(\lambda_{\bar{x}_1}) = \{X_1\}$, since $\lambda_{\bar{x}_1}$ is an indicator variable over $X$.
+First child to the left of node $S^2$, the product node $P^{21}$ has $scope(P^{21}) = \{X_1, X_2\}$, which is the union of $P^{21}$ children's scope.
+Sum node $S^2$ has scope being the union of the scope of its two product children, namely $scope(S^2) = \{X_1,X_2\}$.
+Similarly, $scope(S^1) = \{X_1,X_2,X_3\}$.
 \end{example}
 
-Comment about scope.
+%[Comment about scope.]
 
 %Not constrained SPNs are generally not tractable \cite{peharz2015theoretical}.
 %\cite{poon2011sum} gave two constraints on the the structure of a SPN called completeness and consistency.
@@ -77,7 +83,7 @@ Comment about scope.
 
 A SPN is valid if it always correctly compute the probability of evidence.
 A valid SPN computes the probability of evidence in time linear in its size.
-There are two sufficient conditions which make an SPN valid: completeness and consistency \cite{poon2011sum}..
+There are two sufficient conditions which make an SPN valid: completeness and consistency \cite{poon2011sum}.
 An SPN is \emph{complete} iff each sum node has children with the same scope.
 An SPN is \emph{consistent} iff no variable appears negated in one child of a product node an non-negated in another.
 Completeness and consistency allow us to design deep architectures where inference is guaranteed to be efficient, in this way improving the task of learning \cite{poon2011sum}. 
@@ -132,7 +138,7 @@ Scope of distribution nodes in norm SPN
 \end{figure}
 
 \begin{algorithm}[!ht]
-    \caption{\cite{zhao2015relationship} Build BN Structure.}
+    \caption{\cite{zhao2015relationship} Build BN Structure from a Normalized SPN.}
     \label{alg:poupart}
     \begin{algorithmic}[1]
 %        \Procedure{CircuitPropagation}{${\cal AC}$,$\upsilon()$,$d()$}

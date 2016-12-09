@@ -1,5 +1,7 @@
 \clearpage
 \section{On Augmentation of SPNs}
+\label{sec:new}
+
 
 \cite{peharz2015theoretical} states that the BN representation by \cite{zhao2015relationship} can be recovered from the BN representation of augmented SPNs.
 This tasks consists of constrain the twin-nodes to be equal to the sum-weights.
@@ -20,15 +22,46 @@ We know:\\
 	Augumented SPN $=$ Normalized SPN $+$ Twin Nodes
 	
 
-Introduce Twin Nodes in Normalized SPN
+\subsection{Introduce Twin Nodes in Normalized SPN}
 
 Poupart:\\
 	SPN $\rightarrow$ Normalized SPN + Twin Nodes (Augmented SPN)$\rightarrow$ Poupart BN
 	
 Use Peharz method to:\\
-	SPN $\rightarrow$ Augmented SPN $\rightarrow$ Pehartz BN
+	Nirmalized SPN $\rightarrow$ Augmented SPN $\rightarrow$ Pehartz BN
 	
-\subsection{Twin nodes alternative}
+\begin{algorithm}[!ht]
+    \caption{Build BN Structure from a SPN.}
+    \label{alg:poupart}
+    \begin{algorithmic}[1]
+%        \Procedure{CircuitPropagation}{${\cal AC}$,$\upsilon()$,$d()$}
+        \item[\textbf{Input:} (augmented) normal SPN $\cal S$]
+%        \Statex{Normal SPN $\cal S$}
+        \item[\textbf{Output:} BN ${\cal B} = ({\cal B}_V, {\cal B}_E)$]
+%		\item[\textbf{Main:}]
+		\State $R \leftarrow$ root of ${\cal S}$
+		\If{$R$ is a terminal node over variable $X$}
+			\State Create an observable variable $X$
+			\State ${\cal B}_V \leftarrow {\cal B}_V \cup X$
+		\Else
+			\For{each child $R_i$ of $R$}
+				\If{BN has not been built for ${\cal S}_{R_i}$}
+					\State Recursively build BN Structure for ${\cal S}_{R_i}$
+				\EndIf
+			\EndFor
+			\If{$R$ is a sum node}
+				\State Create a hidden variable $H_R$ associated with $R$
+				\State ${\cal B}_V \leftarrow {\cal B}_V \cup \{H_R\}$
+				\For{each observable variable $X \in {\cal S}_R$}
+					\State ${\cal B}_E \leftarrow {\cal B}_E \cup \{(H_R,X)\}$
+				\EndFor
+			\EndIf
+		\EndIf		
+%    \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+	
+\subsection{Alternative for Twin Nodes}
 
 Instead of introducing twin nodes in Normalized SPN we can modify cope definition in normalized SPN.
 
